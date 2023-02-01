@@ -4,7 +4,7 @@ const app = express()
 // const port = 
 const dotenv = require('dotenv');
 dotenv.config()
-const PORT = process.env.APP_PORT || 3000;
+const PORT = process.env.PORT || process.env.APP_PORT || 3000;
 // const router = require('express').Router();
 const books = require('./data');
 
