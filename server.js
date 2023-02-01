@@ -1,7 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const app = express()
-const port = 3000
+// const port = 
+const dotenv = require('dotenv');
+dotenv.config()
+const PORT = process.env.APP_PORT || 3000;
 // const router = require('express').Router();
 const books = require('./data');
 
@@ -11,7 +14,7 @@ app.get("/", (request, response) => {
     response.send("Hi there");
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("Listen on the port 3000...");
 });
 
