@@ -1,0 +1,13 @@
+<%- include('./header'); %>
+<section class="main">
+    <h1 id="title"> <%- book.title %></h1>
+    <img id="thumbnailUrl" src="<%- book.thumbnailUrl %>" alt="Book Thumbnail">
+    <p id="longDescription"><%- book.longDescription %></p>
+    <p id="isbn">ISBN - <%- book.isbn %></p>
+    <p id="pageCount">Page Count - <%- book.pageCount %></p>
+    <p id="publishedDate">Published Date - <%- book.publishedDate.$date %></p>
+    <p id="status">Status - <%- book.status %></p>
+    <p id="authors">Authors - <%- book.authors %></p>
+    <p id="categories">Categories - <%- book.categories %></p>
+</section>
+<%- include('./footer') %>

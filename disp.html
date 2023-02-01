@@ -1,0 +1,122 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Books Details</title>
+
+	<!-- INCLUDING JQUERY-->
+	<script src=
+"https://code.jquery.com/jquery-3.5.1.js">
+	</script>
+
+	<!-- CSS FOR STYLING THE PAGE -->
+	<style>
+		table {
+			margin: 0 auto;
+			font-size: large;
+			border: 1px solid black;
+		}
+
+		h1 {
+			text-align: center;
+			color: #006600;
+			font-size: xx-large;
+			font-family: 'Gill Sans',
+				'Gill Sans MT', ' Calibri',
+				'Trebuchet MS', 'sans-serif';
+		}
+
+		td {
+			background-color: #E4F5D4;
+			border: 1px solid black;
+		}
+
+		th,
+		td {
+			font-weight: bold;
+			border: 1px solid black;
+			padding: 10px;
+			text-align: center;
+		}
+
+		td {
+			font-weight: lighter;
+		}
+	</style>
+</head>
+
+<body>
+	<section>
+		<h1>ABC Liabrary</h1>
+
+		<!-- TABLE CONSTRUCTION-->
+		<table id='table'>
+			<!-- HEADING FORMATION -->
+			<tr>
+				<th>Book Title</th>
+				<th>Book ISBN</th>
+				<th>Page Count</th>
+				<th>Published Date</th>
+                <th>Thumbnail</th>
+                <!-- <th>Description</th> -->
+                <th>Status</th>
+                <th>Authors</th>
+                <th>Categories</th>
+			</tr>
+
+			<script>
+				$(document).ready(function () {
+
+					// FETCHING DATA FROM JSON FILE
+					$.getJSON("./data.json", function (data) {
+						var Books = '';
+
+						// ITERATING THROUGH OBJECTS
+						$.each(data, function (key, value) {
+
+							//CONSTRUCTION OF ROWS HAVING
+							// DATA FROM JSON OBJECT
+
+							Books += '<tr>';
+							Books += '<td>' + '<a href="/books/' + value.isbn + '">' + value.title + '</a>' + '</td>';
+
+							Books += '<td>' +
+								value.isbn + '</td>';
+
+							Books += '<td>' +
+								value.pageCount + '</td>';
+                            
+
+                            var date = new Date(value.publishedDate.$date);
+                            var dateString = date.toLocaleDateString();
+
+							Books += '<td>' +
+								dateString + '</td>';
+
+                            Books += '<td>' + '<img src = "' +
+								value.thumbnailUrl + '">' + '</td>';
+                            
+                            // Books += '<td>' +
+							// 	value.longDescription + '</td>';
+
+                            Books += '<td>' +
+								value.status + '</td>';
+  
+                            Books += '<td>' +
+								value.authors + '</td>';
+                                
+                            Books += '<td>' +
+								value.categories + '</td>';
+                
+							Books += '</tr>';
+						});
+						
+						//INSERTING ROWS INTO TABLE
+						$('#table').append(Books);
+					});
+				});
+			</script>
+	</section>
+</body>
+
+</html>
